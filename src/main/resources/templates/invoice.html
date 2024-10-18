@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Invoice</title>
+<style>
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 10px;
+	border: 1px solid black;
+	text-align: left;
+}
+
+.header-table {
+	width: 100%;
+	border: none;
+}
+
+.header-table td {
+	border: none;
+}
+</style>
+</head>
+<body>
+	<h3>Seller:</h3>
+	<table class="header-table">
+		<tr>
+			<td>
+				<p th:text="'Seller: ' + ${invoice.seller}"></p>
+				<p th:text="${invoice.sellerAddress}"></p>
+				<p th:text="'GSTIN: ' + ${invoice.sellerGstin}"></p>
+			</td>
+			<td>
+				<p th:text="'Buyer: ' + ${invoice.buyer}"></p>
+				<p th:text="${invoice.buyerAddress}"></p>
+				<p th:text="'GSTIN: ' + ${invoice.buyerGstin}"></p>
+			</td>
+		</tr>
+	</table>
+
+	<h3>Items:</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>Item</th>
+				<th>Quantity</th>
+				<th>Rate</th>
+				<th>Amount</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item : ${invoice.items}">
+				<td th:text="${item.name}"></td>
+				<td th:text="${item.quantity}"></td>
+				<td th:text="${item.rate}"></td>
+				<td th:text="${item.amount}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
